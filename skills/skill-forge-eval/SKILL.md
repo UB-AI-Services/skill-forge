@@ -57,7 +57,9 @@ If no eval set exists, generate one:
 
 ### Step 2: Set Up Workspace
 
-Create an iteration workspace:
+Create the eval workspace **outside** the skill directory to avoid confusing eval
+artifacts with skill files. Use a sibling directory or a dedicated location:
+
 ```
 eval-workspace/
   iteration-1/
