@@ -101,9 +101,43 @@ description: >
 4. Add quality check steps before final output
 5. Consider adding a validation script
 
-### Step 3: Self-Annealing Loop
+### Step 3: Iteration Workspace Protocol
 
-After applying a fix:
+Use structured workspaces to track improvements across iterations:
+
+```
+eval-workspace/
+  iteration-1/          # First version
+    eval-0/with_skill/  # Eval results
+    eval-0/baseline/
+    benchmark.json      # Aggregated metrics
+    benchmark.md        # Human-readable report
+    feedback.json       # User feedback
+  iteration-2/          # After first improvement
+    eval-0/with_skill/
+    eval-0/baseline/
+    benchmark.json
+    benchmark.md
+    feedback.json
+```
+
+**The iteration loop:**
+1. Apply the fix to the skill
+2. Run `/skill-forge eval <path>` into `iteration-<N+1>/`
+3. Run `/skill-forge benchmark <path>` with `--previous iteration-<N>/`
+4. Review benchmark comparison for regressions
+5. Collect user feedback into `feedback.json`
+6. Read feedback and iterate (back to Step 2)
+
+**Stop iterating when:**
+- User says they're happy
+- All feedback is empty (everything looks good)
+- Benchmark shows no meaningful progress between iterations
+- Pass rate meets the defined thresholds
+
+### Step 3b: Self-Annealing Loop
+
+For quick fixes without full eval pipeline:
 
 ```
 1. Apply the fix
@@ -117,6 +151,19 @@ After applying a fix:
    -> Try alternative approach
    -> Repeat
 ```
+
+### Step 3c: Description Optimization Loop
+
+For triggering issues (Category A), use the automated optimization loop:
+
+1. Generate trigger eval set: `python scripts/generate_eval_set.py <path>`
+2. Review and refine the eval set with the user
+3. Run optimization: `python scripts/optimize_description.py <path> --eval-set evals.json`
+4. Review the train/test split scores and improvement suggestions
+5. Apply suggested description changes
+6. Re-run optimization to measure improvement
+7. Select the description with the highest **test score** (not train — avoids overfitting)
+8. Iterate up to 5 times or until test score plateaus
 
 ### Step 4: Architecture Evolution
 

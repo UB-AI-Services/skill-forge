@@ -107,7 +107,25 @@ For skills with sub-skills:
 | Script Quality | 10% | If applicable (full marks if no scripts needed) |
 | Progressive Disclosure | 5% | Proper use of 3-level system |
 
-### Step 9: Generate Report
+### Step 9: Generate Trigger Eval Set
+
+After reviewing, generate a structured trigger eval set for ongoing testing:
+
+1. Run `python scripts/generate_eval_set.py <path>` to auto-generate a starter set
+2. Review and refine the generated queries:
+   - Ensure 8-10 should-trigger queries cover different phrasings and edge cases
+   - Ensure 8-10 should-not-trigger queries are near-misses (not obviously irrelevant)
+   - Include casual speech, typos, and uncommon domain uses in should-trigger set
+3. Save the eval set to `evals/evals.json` in the skill directory
+
+**Good queries** are realistic and specific (include file paths, context, domain details).
+**Bad queries** are overly generic ("format this data") or obviously irrelevant.
+
+4. Run `python scripts/optimize_description.py <path> --eval-set evals/evals.json`
+   to score the current description and get improvement suggestions
+5. Recommend running `/skill-forge eval <path>` for full functional evaluation
+
+### Step 10: Generate Report
 
 ```markdown
 # Skill Review: [name]
