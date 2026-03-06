@@ -12,6 +12,8 @@ Design, scaffold, build, review, evolve, and publish production-grade Claude Cod
 - **Evolve** — Fix triggering issues, improve instructions, refine architecture based on feedback
 - **Publish** — Package as `.skill` files, generate install scripts, prepare for GitHub distribution
 - **Convert** — Port skills to OpenAI Codex, Google Gemini CLI, Google Antigravity, and Cursor
+- **Eval** — Run evaluation pipelines with assertions, grading, and multi-agent execution
+- **Benchmark** — Measure performance with variance analysis, multiple trials, and threshold gating
 
 ## Installation
 
@@ -41,6 +43,8 @@ bash install.sh --uninstall
 | `/skill-forge review <path>` | Audit an existing skill (0-100 score) |
 | `/skill-forge evolve <path>` | Improve a skill from feedback |
 | `/skill-forge publish <path>` | Package for distribution |
+| `/skill-forge eval <path>` | Run eval pipeline to test skill quality |
+| `/skill-forge benchmark <path>` | Benchmark skill with variance analysis |
 | `/skill-forge convert <path>` | Convert to Codex, Gemini, Antigravity, or Cursor |
 
 ### Examples
@@ -90,13 +94,15 @@ python skill-forge/scripts/init_skill.py devops-toolkit --tier 3 --sub docker,k8
 skill-forge/                       # Main orchestrator (Tier 4)
   SKILL.md                         # Entry point and routing
   references/                      # On-demand knowledge (10 files)
-  scripts/                         # Execution scripts (4 files)
+  scripts/                         # Execution scripts (7 files)
   assets/templates/                # Skill templates (4 tiers)
 skills/
   skill-forge-plan/                # Architecture planning
   skill-forge-build/               # Scaffolding and generation
   skill-forge-review/              # Quality auditing
   skill-forge-evolve/              # Improvement and iteration
+  skill-forge-eval/                # Evaluation pipeline
+  skill-forge-benchmark/           # Performance benchmarking
   skill-forge-publish/             # Distribution and packaging
   skill-forge-convert/             # Multi-platform conversion
 agents/
@@ -104,11 +110,15 @@ agents/
   skill-forge-writer.md            # Content writing agent
   skill-forge-validator.md         # Validation agent
   skill-forge-converter.md         # Platform conversion agent
+  skill-forge-executor.md          # Eval execution agent
+  skill-forge-grader.md            # Eval grading agent
+  skill-forge-analyzer.md          # Benchmark analysis agent
+  skill-forge-comparator.md        # Blind A/B comparison agent
 ```
 
 ## Dependencies
 
-- **Python 3.10+** — Required for scaffolding, validation, packaging, and conversion scripts
+- **Python 3.10+** — Required for scaffolding, validation, packaging, conversion, eval, and benchmarking scripts
 - **Claude Code** — The CLI tool these skills are built for
 - No external Python packages required (stdlib only)
 

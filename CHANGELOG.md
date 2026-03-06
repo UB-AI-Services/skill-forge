@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.1.0 — Eval Pipeline & Benchmarking
+
+### Features
+
+- **Eval** — Run evaluation pipelines on skills with assertions, grading, and multi-agent execution (executor, grader, comparator, analyzer agents)
+- **Benchmark** — Measure skill performance with variance analysis, multiple trials, threshold gating, and iteration comparison
+- **Description Optimization** — Automated train/test split scoring to optimize skill descriptions for trigger accuracy
+- **Eval Set Generation** — Auto-generate trigger eval sets from SKILL.md descriptions
+- **Blind A/B Comparison** — Unbiased comparison between skill versions via comparator agent
+- **Enhanced Review** — Review sub-skill now generates trigger eval sets and runs description optimization
+- **Enhanced Evolve** — Evolve sub-skill now includes iteration workspace protocol and description optimization loop
+- 4 new agents: `skill-forge-executor`, `skill-forge-grader`, `skill-forge-analyzer`, `skill-forge-comparator`
+- 3 new scripts: `generate_eval_set.py`, `aggregate_benchmark.py`, `optimize_description.py`
+- 2 new sub-skills: `skill-forge-eval`, `skill-forge-benchmark`
+
 ## v1.0.0 — Initial Release
 
 ### Features

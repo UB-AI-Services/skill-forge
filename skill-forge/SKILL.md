@@ -9,7 +9,9 @@ description: >
   detection for skill domain. Triggers on: "create skill", "build skill", "new skill",
   "skill creator", "skill builder", "skill-forge", "design skill", "scaffold skill",
   "review skill", "improve skill", "publish skill", "skill architecture",
-  "convert skill", "port skill", "multi-platform", "cross-platform".
+  "convert skill", "port skill", "multi-platform", "cross-platform",
+  "eval skill", "test skill", "benchmark skill", "skill evals",
+  "measure skill", "skill performance", "skill A/B test".
 allowed-tools:
   - Read
   - Grep
@@ -36,6 +38,8 @@ skills like claude-seo and claude-ads.
 | `/skill-forge review <path>` | Audit an existing skill for quality |
 | `/skill-forge evolve <path>` | Improve skill based on feedback/issues |
 | `/skill-forge publish <path>` | Package and prepare for distribution |
+| `/skill-forge eval <path>` | Run eval pipeline to test skill quality |
+| `/skill-forge benchmark <path>` | Benchmark skill with variance analysis |
 | `/skill-forge convert <path>` | Convert skill to Codex/Gemini/Antigravity/Cursor |
 
 ## Orchestration Logic
@@ -48,7 +52,9 @@ Walk the user through the full skill creation lifecycle:
 2. **Architecture**: Determine skill complexity tier and design structure
 3. **Build**: Generate all files following chosen template
 4. **Review**: Validate structure, frontmatter, triggers, and quality
-5. **Iterate**: Refine based on testing feedback
+5. **Eval**: Run eval pipeline with assertions and grading
+6. **Benchmark**: Measure pass rate, time, tokens with variance analysis
+7. **Iterate**: Refine based on eval results and feedback
 
 ### Command Routing
 
@@ -57,6 +63,8 @@ For specific commands, load the relevant sub-skill:
 - `/skill-forge build` -> `skills/skill-forge-build/SKILL.md`
 - `/skill-forge review` -> `skills/skill-forge-review/SKILL.md`
 - `/skill-forge evolve` -> `skills/skill-forge-evolve/SKILL.md`
+- `/skill-forge eval` -> `skills/skill-forge-eval/SKILL.md`
+- `/skill-forge benchmark` -> `skills/skill-forge-benchmark/SKILL.md`
 - `/skill-forge publish` -> `skills/skill-forge-publish/SKILL.md`
 - `/skill-forge convert` -> `skills/skill-forge-convert/SKILL.md`
 
@@ -155,11 +163,13 @@ Load on-demand as needed -- do NOT load all at startup:
 
 ## Sub-Skills
 
-This skill orchestrates 6 specialized sub-skills:
+This skill orchestrates 8 specialized sub-skills:
 
 1. **skill-forge-plan** -- Architecture design and use case planning
 2. **skill-forge-build** -- Scaffold and generate skill files
 3. **skill-forge-review** -- Audit and validate existing skills
 4. **skill-forge-evolve** -- Improve skills based on feedback
-5. **skill-forge-publish** -- Package and prepare for distribution
-6. **skill-forge-convert** -- Convert skills for Codex, Gemini CLI, Antigravity, Cursor
+5. **skill-forge-eval** -- Run eval pipeline with assertions and grading
+6. **skill-forge-benchmark** -- Benchmark performance with variance analysis
+7. **skill-forge-publish** -- Package and prepare for distribution
+8. **skill-forge-convert** -- Convert skills for Codex, Gemini CLI, Antigravity, Cursor

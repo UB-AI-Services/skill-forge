@@ -29,6 +29,9 @@ skill-forge/                         # Repository root
       validate_skill.py             # Validate skill structure
       package_skill.py              # Package for distribution
       convert_skill.py              # Convert skills to other platforms
+      generate_eval_set.py          # Generate trigger eval sets from SKILL.md
+      aggregate_benchmark.py        # Aggregate eval results into benchmarks
+      optimize_description.py       # Optimize descriptions with train/test split
     assets/
       templates/                     # Skill templates by tier
         minimal.md                  # Tier 1: single SKILL.md
@@ -40,6 +43,8 @@ skill-forge/                         # Repository root
     skill-forge-build/SKILL.md      # Scaffold and generate skills
     skill-forge-review/SKILL.md     # Audit and validate skills
     skill-forge-evolve/SKILL.md     # Improve skills from feedback
+    skill-forge-eval/SKILL.md       # Run eval pipeline with assertions
+    skill-forge-benchmark/SKILL.md  # Benchmark performance tracking
     skill-forge-publish/SKILL.md    # Package and distribute skills
     skill-forge-convert/SKILL.md    # Convert skills to other platforms
   agents/                            # Subagent definitions
@@ -47,6 +52,10 @@ skill-forge/                         # Repository root
     skill-forge-writer.md           # SKILL.md content writer agent
     skill-forge-validator.md        # Validation agent
     skill-forge-converter.md        # Platform conversion agent
+    skill-forge-executor.md         # Eval execution agent
+    skill-forge-grader.md           # Eval grading agent
+    skill-forge-analyzer.md         # Benchmark analysis agent
+    skill-forge-comparator.md       # Blind A/B comparison agent
   install.sh                         # Installation script
 ```
 
@@ -76,6 +85,8 @@ skill-forge/                         # Repository root
 | `/skill-forge build` | Scaffold and generate skill files |
 | `/skill-forge review` | Audit existing skill quality |
 | `/skill-forge evolve` | Improve skill from feedback |
+| `/skill-forge eval` | Run eval pipeline to test skill quality |
+| `/skill-forge benchmark` | Benchmark skill performance |
 | `/skill-forge publish` | Package for distribution |
 | `/skill-forge convert` | Convert skills to other platforms |
 
