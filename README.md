@@ -2,6 +2,8 @@
 
 ![Skill Forge](skill-forge-header.jpeg)
 
+> **Blog:** [Learn how to build Claude Code skills](https://agricidaniel.com/blog/skill-forge-build-claude-code-skills)
+
 Design, scaffold, build, review, evolve, and publish production-grade Claude Code skills following the [Agent Skills open standard](https://agentskills.io).
 
 ## Features
