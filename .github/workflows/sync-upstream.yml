@@ -1,0 +1,22 @@
+name: Sync with upstream
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Every Monday at 06:00 UTC
+  workflow_dispatch:       # Manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync fork with upstream
+        uses: aormber/Fork-Sync-With-Upstream-action@v2.1
+        with:
+          target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+          upstream_sync_repo: AgriciDaniel/skill-forge
+          upstream_sync_branch: main
+          target_sync_branch: main
+          test_mode: false
